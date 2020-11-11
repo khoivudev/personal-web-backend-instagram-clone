@@ -21,11 +21,15 @@ exports.createPost = (req, res) => {
 
 exports.getMyPosts = (req, res) => {
   Post.find({ postedBy: req.user._id })
+    .sort({ createdAt: "desc" })
     .populate({
       path: "postedBy",
       select: "_id firstName lastName",
     })
     .then((posts) => {
+      posts.forEach((post) => {
+        post.postedBy.username = post.postedBy.fullName;
+      });
       res.status(200).json({ posts });
     })
     .catch((error) => {
