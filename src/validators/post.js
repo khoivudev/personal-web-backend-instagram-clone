@@ -3,6 +3,7 @@ var { check, validationResult } = require("express-validator");
 exports.validationCreatePostRequest = [
   check("title").notEmpty().withMessage("title is required"),
   check("content").notEmpty().withMessage("content is required"),
+  check("photo").notEmpty().withMessage("Photo is required"),
 ];
 
 exports.isRequestValidated = (req, res, next) => {

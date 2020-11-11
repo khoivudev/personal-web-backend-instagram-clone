@@ -1,11 +1,12 @@
 const Post = require("../models/post");
 
 exports.createPost = (req, res) => {
-  const { title, content } = req.body;
+  const { title, content, photo } = req.body;
   const postedBy = req.user._id;
   const post = new Post({
     title,
     content,
+    photo,
     postedBy,
   });
   post
